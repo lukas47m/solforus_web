@@ -62,6 +62,44 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
             header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.boxShadow = 'none';
         }
+        
+        // Add slight parallax effect to hero image
+        const heroImage = document.querySelector('.hero-image');
+        if (heroImage) {
+            heroImage.style.transform = `translateY(${window.scrollY * 0.05}px)`;
+        }
+        
+        lastScrollY = window.scrollY;
     });
+    
+    // Add animation on scroll
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.feature-card, .benefit-item, .timeline-item, .faq-item');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (elementPosition < screenPosition) {
+                element.classList.add('animate');
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Set initial state for animations
+    const elementsToAnimate = document.querySelectorAll('.feature-card, .benefit-item, .timeline-item, .faq-item');
+    elementsToAnimate.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    // Run animation check on load and scroll
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
 }); 

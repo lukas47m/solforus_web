@@ -486,7 +486,9 @@ tr:hover {
     justify-content: space-between;
     align-items: center;
 }
-
+.logo img, .footer-logo img {
+    border-radius: 8px; /* This adds rounded corners */
+}
 .faq-question h3 {
     margin-bottom: 0;
     font-size: 1.1rem;

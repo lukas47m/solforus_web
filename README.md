@@ -1,1 +1,1 @@
-# solana-wallet_web
+# solforus_web
